@@ -7,13 +7,11 @@
 --%>
 <%@ page import="org.example.tp_dog.model.Dog" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%
-    // Récupère la liste des chiens passée en attribut request par le servlet
-    java.util.List<Dog> dogs = (java.util.List<Dog>) request.getAttribute("dogs");
+<%java.util.List<Dog> dogs = (java.util.List<Dog>) request.getAttribute("dogs");
     if (dogs == null) {
-        dogs = new java.util.ArrayList<>(); // évite NullPointerException si null
-    }
-%>
+        dogs = new java.util.ArrayList<>();}%>
+
+<link rel="stylesheet" href="${pageContext.request.contextPath}/style/stylesList.css">
 <html>
 <head>
     <title>Liste de chien</title>
@@ -29,6 +27,7 @@
         <th>Nom</th>
         <th>Race</th>
         <th>Date de naissance</th>
+        <th>Détail</th>
 
     </tr>
     </thead>
@@ -40,7 +39,12 @@
         <td><%= d.getName() %></td>
         <td><%= d.getBreed() %></td>
         <td><%= d.getDateOfBirth() %></td>
-
+        <td>
+            <form action="<%= request.getContextPath() %>/detailDog" method="get" style="margin:0;">
+                <input type="hidden" name="id" value="<%= d.getId() %>" />
+                <button type="submit">Détail</button>
+            </form>
+        </td>
     </tr>
     <% } %>
     </tbody>

@@ -15,12 +15,13 @@ import java.util.List;
 @WebServlet(name = "addDog", value = "/addDog")
 public class AddDogServlet extends HttpServlet {
 
-    protected static List<Dog> dogs;
+    protected static List<Dog> dogs; // jai mit la liste en protected pour l'utilsier dans les autres servlet
 
     @Override
     public void init() throws ServletException {
         dogs = new ArrayList<>();
-        dogs.add(new Dog(1 , "Bobby" , "Labrador" , "2020-01-01"));
+        dogs.add(new Dog( "Bobby" , "Labrador" , "2020-01-01"));
+
 
     }
 
@@ -28,7 +29,7 @@ public class AddDogServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // ca me sert a me rediriger vers la page jsp
+        // ca me sert a me rediriger vers la page dog ads jsp
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/dogAdd.jsp");
 
         dispatcher.forward(request, response);
@@ -40,13 +41,13 @@ public class AddDogServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req , HttpServletResponse resp) throws ServletException, IOException {
-        int id = dogs.size() + 1;
 
-       // Integer id = Integer.parseInt(req.getParameter("id")); // ne marche pas car on veut auton increment
+
+        // Integer id = Integer.parseInt(req.getParameter("id"));
        String name = req.getParameter("name");
         String breed = req.getParameter("breed");
         String dateOfBirth = req.getParameter("dateOfBirth");
-        Dog dog = new Dog(id , name , breed , dateOfBirth);
+        Dog dog = new Dog( name , breed , dateOfBirth);
         dogs.add(dog);
         req.setAttribute("dogs",dogs);
 

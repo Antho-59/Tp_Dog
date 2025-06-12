@@ -1,6 +1,6 @@
 package org.example.tp_dog.model;
 
-import lombok.*;
+
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,7 +18,7 @@ public class Dog {
     private String dateOfBirth;
 
 
-    public Dog(int id , String name , String breed , String dateOfBirth) {
+    public Dog( String name , String breed , String dateOfBirth) {
         this.name = name;
         this.breed = breed;
         this.dateOfBirth = dateOfBirth;

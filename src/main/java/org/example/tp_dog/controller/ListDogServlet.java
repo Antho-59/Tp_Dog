@@ -15,9 +15,6 @@ import java.util.List;
 public class ListDogServlet extends HttpServlet {
 
 
-   // private List<Dog> dogList;
-
-
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
