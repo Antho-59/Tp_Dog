@@ -23,15 +23,30 @@ public class AddDogServlet extends HttpServlet {
 
     }
 
+//    @Override
+//    protected void p(HttpServletRequest req , HttpServletResponse resp) throws ServletException, IOException {
+//       Integer id = Integer.parseInt(req.getParameter("id"));
+//       String name = req.getParameter("name");
+//        String breed = req.getParameter("breed");
+//        String dateOfBirth = req.getParameter("dateOfBirth");
+//        Dog dog = new Dog(id , name , breed , dateOfBirth);
+//        this.dogs.add(dog);
+//        doGet(req , resp);
+//    }
+
+
     @Override
-    protected void doGet(HttpServletRequest req , HttpServletResponse resp) throws ServletException, IOException {
-       Integer id = Integer.parseInt(req.getParameter("id"));
+    protected void doPost(HttpServletRequest req , HttpServletResponse resp) throws ServletException, IOException {
+        Integer id = Integer.parseInt(req.getParameter("id"));
        String name = req.getParameter("name");
         String breed = req.getParameter("breed");
         String dateOfBirth = req.getParameter("dateOfBirth");
         Dog dog = new Dog(id , name , breed , dateOfBirth);
         this.dogs.add(dog);
-        doGet(req , resp);
+        req.setAttribute("dogs",dogs);
 
+
+        System.out.println("je passe par  doPost de AddDogServlet");
+        System.out.println(this.dogs);
     }
 }
