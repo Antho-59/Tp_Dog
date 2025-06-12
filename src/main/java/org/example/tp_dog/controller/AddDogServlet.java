@@ -1,5 +1,6 @@
 package org.example.tp_dog.controller;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -33,6 +34,13 @@ public class AddDogServlet extends HttpServlet {
 //        this.dogs.add(dog);
 //        doGet(req , resp);
 //    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Rediriger vers la page addDog.jsp
+        RequestDispatcher dispatcher = request.getRequestDispatcher("addDog.jsp");
+        dispatcher.forward(request, response);
+    }
 
 
     @Override
