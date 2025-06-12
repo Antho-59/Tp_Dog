@@ -7,7 +7,13 @@
 --%>
 <%@ page import="org.example.tp_dog.model.Dog" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:useBean id="dogs" type="java.util.ArrayList<org.example.tp_dog.model.Dog>" scope="request" />
+<%
+    // Récupère la liste des chiens passée en attribut request par le servlet
+    java.util.List<Dog> dogs = (java.util.List<Dog>) request.getAttribute("dogs");
+    if (dogs == null) {
+        dogs = new java.util.ArrayList<>(); // évite NullPointerException si null
+    }
+%>
 <html>
 <head>
     <title>Liste de chien</title>
@@ -26,20 +32,19 @@
 
     </tr>
     </thead>
-<%--    <tbody>--%>
+    <tbody>
 
-<%--    <% for (org.example.tp_dog.model.Dog d : dogs)%>--%>
-<%--    <tr>--%>
-<%--        <td><%=  %></td>--%>
+    <% for (Dog d : dogs){%>
+    <tr>
+        <td><%= d.getId() %></td>
+        <td><%= d.getName() %></td>
+        <td><%= d.getBreed() %></td>
+        <td><%= d.getDateOfBirth() %></td>
 
-<%--    </tr>--%>
-<%--    <% } %>--%>
-<%--    </tbody>--%>
+    </tr>
+    <% } %>
+    </tbody>
 </table>
-
-<h2>
-    <a href="${pageContext.request.contextPath}/index.jsp">Retour à l'accueil</a>
-</h2>
 
 </body>
 </html>

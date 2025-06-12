@@ -15,14 +15,14 @@ import java.util.List;
 public class ListDogServlet extends HttpServlet {
 
 
-    private List<Dog> dogList;
+   // private List<Dog> dogList;
 
 
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("je passe par  doGet de ListdogServlet");
-        req.setAttribute("dogs",dogList);
+        req.setAttribute("dogs",AddDogServlet.dogs);
         req.getRequestDispatcher("/WEB-INF/dogList.jsp").forward(req , resp);
     }
 }
